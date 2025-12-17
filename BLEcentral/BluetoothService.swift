@@ -55,6 +55,9 @@ final class BluetoothService: NSObject, BluetoothServiceProtocol, CBCentralManag
     /// Enable or disable logging output
     var isLoggingEnabled: Bool = true
     
+    /// Callback closure for when a new device is discovered
+    var onLatestDevice: ((DeviceInfo) -> Void)?
+    
     // MARK: - Initialization
     
     override init() {
@@ -186,15 +189,21 @@ final class BluetoothService: NSObject, BluetoothServiceProtocol, CBCentralManag
         )
         
         // Use dictionary for O(1) lookup instead of O(n) array search
+        let isNewDevice: Bool
         if let existingIndex = deviceMap[identifier] {
             // Update existing device
             myDevices[existingIndex] = deviceInfo
+            isNewDevice = false
         } else {
             // Add new device
             let newIndex = myDevices.count
             myDevices.append(deviceInfo)
             deviceMap[identifier] = newIndex
+            isNewDevice = true
         }
+        
+        // Notify about latest device (always notify, even for updates)
+        onLatestDevice?(deviceInfo)
     }
     
     // MARK: - Private Methods - Logging

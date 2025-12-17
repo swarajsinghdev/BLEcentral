@@ -15,7 +15,12 @@ final class HomeViewModel {
     // MARK: - Dependencies
     
     /// Bluetooth service for device scanning
-    private let bluetoothService: BluetoothServiceProtocol
+    private var bluetoothService: BluetoothServiceProtocol
+    
+    // MARK: - Observable State
+    
+    /// Latest discovered device
+    var latestDevice: DeviceInfo?
     
     // MARK: - Computed Properties
     
@@ -33,6 +38,31 @@ final class HomeViewModel {
     
     init(bluetoothService: BluetoothServiceProtocol = BluetoothService()) {
         self.bluetoothService = bluetoothService
+        
+        // Set up latest device notification
+        self.bluetoothService.onLatestDevice = { [weak self] deviceInfo in
+            self?.handleLatestDevice(deviceInfo)
+        }
+    }
+    
+    // MARK: - Private Methods
+    
+    /// Handles notification when a new device is discovered
+    /// 
+    /// - Parameter deviceInfo: The latest discovered device information
+    private func handleLatestDevice(_ deviceInfo: DeviceInfo) {
+        // Update latest device
+        latestDevice = deviceInfo
+        
+        // Print details
+        let deviceName = deviceInfo.name ?? deviceInfo.localName ?? "Unknown"
+        print("📱 Latest Device Discovered:")
+        print("   Name: \(deviceName)")
+        print("   ID: \(deviceInfo.identifier.uuidString)")
+        print("   RSSI: \(deviceInfo.rssi) dBm")
+        print("   Manufacturer Data: \(deviceInfo.manufacturerDataString)")
+        print("   Services: \(deviceInfo.serviceUUIDsString)")
+        print("---")
     }
     
     // MARK: - Public Methods

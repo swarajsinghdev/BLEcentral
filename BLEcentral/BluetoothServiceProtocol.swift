@@ -18,6 +18,9 @@ protocol BluetoothServiceProtocol {
     /// Enable or disable logging output
     var isLoggingEnabled: Bool { get set }
     
+    /// Callback closure for when a new device is discovered
+    var onLatestDevice: ((DeviceInfo) -> Void)? { get set }
+    
     /// Starts scanning for BLE devices
     func startScanning()
     
