@@ -24,7 +24,7 @@ class BLEScanner: NSObject, ObservableObject, CBCentralManagerDelegate {
         static let serviceUUID = CBUUID(string: "ABE508FC-CF13-47A4-910F-CC883F9399C6")
         
         /// Name prefix for filtering devices (optional)
-        static let namePrefix = "SB-"
+        static let namePrefix = "000"//"SB-"
         
         /// Status update interval in seconds
         static let statusUpdateInterval: TimeInterval = 60.0
@@ -55,6 +55,9 @@ class BLEScanner: NSObject, ObservableObject, CBCentralManagerDelegate {
     /// Dictionary for efficient device lookup by identifier
     private var deviceMap: [UUID: Int] = [:]
     
+    /// Enable or disable logging output
+    var isLoggingEnabled: Bool = true
+    
     // MARK: - Initialization
     
     private override init() {
@@ -77,11 +80,11 @@ class BLEScanner: NSObject, ObservableObject, CBCentralManagerDelegate {
     /// - Note: Scanning will only start if Bluetooth is powered on
     func startScanning() {
         guard central.state == .poweredOn else {
-            print("❌ Cannot start scanning: Bluetooth is not powered on")
+            log("❌ Cannot start scanning: Bluetooth is not powered on")
             return
         }
         
-        print("✅ START SCANNING")
+        log("✅ START SCANNING")
         clearDevices()
         isScanning = true
         
@@ -99,7 +102,7 @@ class BLEScanner: NSObject, ObservableObject, CBCentralManagerDelegate {
     /// This method stops the central manager from scanning and invalidates
     /// the status update timer.
     func stopScanning() {
-        print("🛑 STOP SCANNING")
+        log("🛑 STOP SCANNING")
         central.stopScan()
         isScanning = false
         stopStatusTimer()
@@ -110,23 +113,21 @@ class BLEScanner: NSObject, ObservableObject, CBCentralManagerDelegate {
     /// Called when the central manager's state changes
     /// - Parameter central: The central manager whose state changed
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        let stateString = bluetoothStateString(central.state)
-        
         switch central.state {
         case .poweredOn:
-            print("✅ Bluetooth powered on")
+            log("✅ Bluetooth powered on")
         case .poweredOff:
-            print("⚠️ Bluetooth powered off")
+            log("⚠️ Bluetooth powered off")
         case .unauthorized:
-            print("⚠️ Bluetooth unauthorized")
+            log("⚠️ Bluetooth unauthorized")
         case .unsupported:
-            print("⚠️ Bluetooth unsupported")
+            log("⚠️ Bluetooth unsupported")
         case .resetting:
-            print("⚠️ Bluetooth resetting")
+            log("⚠️ Bluetooth resetting")
         case .unknown:
-            print("⚠️ Bluetooth state unknown")
+            log("⚠️ Bluetooth state unknown")
         @unknown default:
-            print("⚠️ Bluetooth state: \(stateString)")
+            log("⚠️ Bluetooth state: \(bluetoothStateString(central.state))")
         }
         
         // Stop scanning if Bluetooth is not available
@@ -171,6 +172,15 @@ class BLEScanner: NSObject, ObservableObject, CBCentralManagerDelegate {
         advertisementData: [String: Any],
         rssi: NSNumber
     ) {
+        // Filter by name prefix if configured
+        let localName = advertisementData[CBAdvertisementDataLocalNameKey] as? String
+        let advertisedName = peripheral.name ?? localName
+        
+        // Only process devices matching the name prefix
+        guard let name = advertisedName, name.hasPrefix(Constants.namePrefix) else {
+            return
+        }
+        
         let identifier = peripheral.identifier
         let deviceInfo = DeviceInfo(
             peripheral: peripheral,
@@ -192,6 +202,16 @@ class BLEScanner: NSObject, ObservableObject, CBCentralManagerDelegate {
     
     // MARK: - Private Methods - Logging
     
+    /// Centralized logging function
+    /// 
+    /// Prints the message only if logging is enabled
+    /// 
+    /// - Parameter message: The message to log
+    private func log(_ message: String) {
+        guard isLoggingEnabled else { return }
+        print(message)
+    }
+    
     /// Logs detailed information about a discovered device
     /// 
     /// - Parameters:
@@ -203,13 +223,13 @@ class BLEScanner: NSObject, ObservableObject, CBCentralManagerDelegate {
         advertisementData: [String: Any],
         rssi: NSNumber
     ) {
-        print("=== Discovered ===")
-        print("Name: \(peripheral.name ?? "nil")")
-        print("Local Name: \(advertisementData[CBAdvertisementDataLocalNameKey] ?? "nil")")
-        print("Manufacturer Data: \(advertisementData[CBAdvertisementDataManufacturerDataKey] ?? "nil")")
-        print("Services: \(advertisementData[CBAdvertisementDataServiceUUIDsKey] ?? "nil")")
-        print("ID: \(peripheral.identifier)")
-        print("RSSI: \(rssi) dBm\n")
+        log("=== Discovered ===")
+        log("Name: \(peripheral.name ?? "nil")")
+        log("Local Name: \(advertisementData[CBAdvertisementDataLocalNameKey] ?? "nil")")
+        log("Manufacturer Data: \(advertisementData[CBAdvertisementDataManufacturerDataKey] ?? "nil")")
+        log("Services: \(advertisementData[CBAdvertisementDataServiceUUIDsKey] ?? "nil")")
+        log("ID: \(peripheral.identifier)")
+        log("RSSI: \(rssi) dBm\n")
     }
     
     // MARK: - Private Methods - Status Timer
@@ -239,24 +259,24 @@ class BLEScanner: NSObject, ObservableObject, CBCentralManagerDelegate {
     /// This method is called periodically by the status timer to provide
     /// updates on the scanning progress and discovered devices.
     private func printStatus() {
-        print("\n📊 === STATUS UPDATE (Every 1 min) ===")
-        print("Scanning: \(isScanning ? "YES" : "NO")")
-        print("Bluetooth State: \(bluetoothStateString(central.state))")
-        print("Devices Found: \(myDevices.count)")
+        log("\n📊 === STATUS UPDATE (Every 1 min) ===")
+        log("Scanning: \(isScanning ? "YES" : "NO")")
+        log("Bluetooth State: \(bluetoothStateString(central.state))")
+        log("Devices Found: \(myDevices.count)")
         
         if myDevices.isEmpty {
-            print("No devices found yet.")
+            log("No devices found yet.")
         } else {
-            print("\n📱 Discovered Devices:")
+            log("\n📱 Discovered Devices:")
             for (index, device) in myDevices.enumerated() {
                 let deviceName = device.name ?? device.localName ?? "Unknown"
-                print("  [\(index + 1)] \(deviceName)")
-                print("      ID: \(device.identifier.uuidString)")
-                print("      RSSI: \(device.rssi) dBm")
-                print("      Manufacturer Data: \(device.manufacturerDataString)")
+                log("  [\(index + 1)] \(deviceName)")
+                log("      ID: \(device.identifier.uuidString)")
+                log("      RSSI: \(device.rssi) dBm")
+                log("      Manufacturer Data: \(device.manufacturerDataString)")
             }
         }
-        print("=====================================\n")
+        log("=====================================\n")
     }
     
     // MARK: - Private Methods - Helpers
