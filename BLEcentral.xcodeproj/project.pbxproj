@@ -10,9 +10,11 @@
 		0F4288252EF01D7C003C0DA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F4288212EF01D7C003C0DA6 /* Assets.xcassets */; };
 		0F4288262EF01D7C003C0DA6 /* BLEcentralApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4288222EF01D7C003C0DA6 /* BLEcentralApp.swift */; };
 		0F4288272EF01D7C003C0DA6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4288232EF01D7C003C0DA6 /* HomeView.swift */; };
-		0F4288292EF01F98003C0DA6 /* BLEScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4288282EF01F98003C0DA6 /* BLEScanner.swift */; };
+		0F4288292EF01F98003C0DA6 /* BluetoothService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4288282EF01F98003C0DA6 /* BluetoothService.swift */; };
 		0F42882B2EF13F70003C0DA6 /* DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F42882A2EF13F70003C0DA6 /* DeviceInfo.swift */; };
 		0F42882D2EF13F8A003C0DA6 /* DeviceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F42882C2EF13F8A003C0DA6 /* DeviceRow.swift */; };
+		0F42882F2EF29498003C0DA6 /* BluetoothServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F42882E2EF29498003C0DA6 /* BluetoothServiceProtocol.swift */; };
+		0F4288312EF295CB003C0DA6 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4288302EF295CB003C0DA6 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,9 +22,11 @@
 		0F4288212EF01D7C003C0DA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F4288222EF01D7C003C0DA6 /* BLEcentralApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEcentralApp.swift; sourceTree = "<group>"; };
 		0F4288232EF01D7C003C0DA6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		0F4288282EF01F98003C0DA6 /* BLEScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEScanner.swift; sourceTree = "<group>"; };
+		0F4288282EF01F98003C0DA6 /* BluetoothService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothService.swift; sourceTree = "<group>"; };
 		0F42882A2EF13F70003C0DA6 /* DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfo.swift; sourceTree = "<group>"; };
 		0F42882C2EF13F8A003C0DA6 /* DeviceRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRow.swift; sourceTree = "<group>"; };
+		0F42882E2EF29498003C0DA6 /* BluetoothServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothServiceProtocol.swift; sourceTree = "<group>"; };
+		0F4288302EF295CB003C0DA6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,10 +61,12 @@
 			children = (
 				0F4288212EF01D7C003C0DA6 /* Assets.xcassets */,
 				0F4288222EF01D7C003C0DA6 /* BLEcentralApp.swift */,
+				0F4288302EF295CB003C0DA6 /* HomeViewModel.swift */,
 				0F4288232EF01D7C003C0DA6 /* HomeView.swift */,
 				0F42882C2EF13F8A003C0DA6 /* DeviceRow.swift */,
 				0F42882A2EF13F70003C0DA6 /* DeviceInfo.swift */,
-				0F4288282EF01F98003C0DA6 /* BLEScanner.swift */,
+				0F42882E2EF29498003C0DA6 /* BluetoothServiceProtocol.swift */,
+				0F4288282EF01F98003C0DA6 /* BluetoothService.swift */,
 			);
 			path = BLEcentral;
 			sourceTree = "<group>";
@@ -137,7 +143,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F4288292EF01F98003C0DA6 /* BLEScanner.swift in Sources */,
+				0F42882F2EF29498003C0DA6 /* BluetoothServiceProtocol.swift in Sources */,
+				0F4288292EF01F98003C0DA6 /* BluetoothService.swift in Sources */,
+				0F4288312EF295CB003C0DA6 /* HomeViewModel.swift in Sources */,
 				0F4288262EF01D7C003C0DA6 /* BLEcentralApp.swift in Sources */,
 				0F4288272EF01D7C003C0DA6 /* HomeView.swift in Sources */,
 				0F42882B2EF13F70003C0DA6 /* DeviceInfo.swift in Sources */,

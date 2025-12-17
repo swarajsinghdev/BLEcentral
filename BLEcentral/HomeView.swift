@@ -6,27 +6,30 @@
 //
 
 import SwiftUI
-import CoreBluetooth
 
 struct HomeView: View {
-    private let scanner = BLEScanner.shared
+    @State private var viewModel: HomeViewModel
+    
+    init(bluetoothService: BluetoothService = BluetoothService.shared) {
+        _viewModel = State(initialValue: HomeViewModel(bluetoothService: bluetoothService))
+    }
 
     var body: some View {
         NavigationStack {
             VStack {
-                Button(scanner.isScanning ? "Stop" : "Scan for My Devices") {
-                    scanner.isScanning ? scanner.stopScanning() : scanner.startScanning()
+                Button(viewModel.isScanning ? "Stop" : "Scan for My Devices") {
+                    viewModel.isScanning ? viewModel.stopScanning() : viewModel.startScanning()
                 }
                 .padding()
                 .background(Color.green)
                 .foregroundColor(.white)
                 .cornerRadius(8)
 
-                List(scanner.myDevices) { device in
+                List(viewModel.myDevices) { device in
                     DeviceRow(device: device)
                 }
                 .overlay {
-                    if scanner.myDevices.isEmpty && scanner.isScanning {
+                    if viewModel.myDevices.isEmpty && viewModel.isScanning {
                         Text("Searching for your devices...")
                             .foregroundColor(.secondary)
                     }
