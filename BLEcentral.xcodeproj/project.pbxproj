@@ -6,17 +6,24 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		0F4288252EF01D7C003C0DA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F4288212EF01D7C003C0DA6 /* Assets.xcassets */; };
+		0F4288262EF01D7C003C0DA6 /* BLEcentralApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4288222EF01D7C003C0DA6 /* BLEcentralApp.swift */; };
+		0F4288272EF01D7C003C0DA6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4288232EF01D7C003C0DA6 /* HomeView.swift */; };
+		0F4288292EF01F98003C0DA6 /* BLEScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4288282EF01F98003C0DA6 /* BLEScanner.swift */; };
+		0F42882B2EF13F70003C0DA6 /* DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F42882A2EF13F70003C0DA6 /* DeviceInfo.swift */; };
+		0F42882D2EF13F8A003C0DA6 /* DeviceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F42882C2EF13F8A003C0DA6 /* DeviceRow.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		0F4288132EF01D73003C0DA6 /* BLEcentral.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLEcentral.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F4288212EF01D7C003C0DA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0F4288222EF01D7C003C0DA6 /* BLEcentralApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEcentralApp.swift; sourceTree = "<group>"; };
+		0F4288232EF01D7C003C0DA6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		0F4288282EF01F98003C0DA6 /* BLEScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEScanner.swift; sourceTree = "<group>"; };
+		0F42882A2EF13F70003C0DA6 /* DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfo.swift; sourceTree = "<group>"; };
+		0F42882C2EF13F8A003C0DA6 /* DeviceRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		0F4288152EF01D73003C0DA6 /* BLEcentral */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = BLEcentral;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		0F4288102EF01D73003C0DA6 /* Frameworks */ = {
@@ -32,7 +39,7 @@
 		0F42880A2EF01D73003C0DA6 = {
 			isa = PBXGroup;
 			children = (
-				0F4288152EF01D73003C0DA6 /* BLEcentral */,
+				0F4288242EF01D7C003C0DA6 /* BLEcentral */,
 				0F4288142EF01D73003C0DA6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +50,19 @@
 				0F4288132EF01D73003C0DA6 /* BLEcentral.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		0F4288242EF01D7C003C0DA6 /* BLEcentral */ = {
+			isa = PBXGroup;
+			children = (
+				0F4288212EF01D7C003C0DA6 /* Assets.xcassets */,
+				0F4288222EF01D7C003C0DA6 /* BLEcentralApp.swift */,
+				0F4288232EF01D7C003C0DA6 /* HomeView.swift */,
+				0F42882C2EF13F8A003C0DA6 /* DeviceRow.swift */,
+				0F42882A2EF13F70003C0DA6 /* DeviceInfo.swift */,
+				0F4288282EF01F98003C0DA6 /* BLEScanner.swift */,
+			);
+			path = BLEcentral;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -59,9 +79,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				0F4288152EF01D73003C0DA6 /* BLEcentral */,
 			);
 			name = BLEcentral;
 			packageProductDependencies = (
@@ -109,6 +126,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F4288252EF01D7C003C0DA6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +137,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F4288292EF01F98003C0DA6 /* BLEScanner.swift in Sources */,
+				0F4288262EF01D7C003C0DA6 /* BLEcentralApp.swift in Sources */,
+				0F4288272EF01D7C003C0DA6 /* HomeView.swift in Sources */,
+				0F42882B2EF13F70003C0DA6 /* DeviceInfo.swift in Sources */,
+				0F42882D2EF13F8A003C0DA6 /* DeviceRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,11 +279,13 @@
 				DEVELOPMENT_TEAM = X3YKR6M53J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Scanning for BLE devices";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -288,11 +313,13 @@
 				DEVELOPMENT_TEAM = X3YKR6M53J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Scanning for BLE devices";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
