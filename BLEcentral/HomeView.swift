@@ -31,9 +31,9 @@ struct HomeView: View {
         viewModel.myDevices.isEmpty && viewModel.isScanning
     }
     
-    /// Button text based on scanning state
-    private var scanButtonText: String {
-        viewModel.isScanning ? "Stop" : "Scan for My Devices"
+    /// Determines if the initial state should be shown (first time, no devices, not scanning)
+    private var shouldShowInitialState: Bool {
+        viewModel.latestDevice == nil && viewModel.myDevices.isEmpty && !viewModel.isScanning
     }
     
     // MARK: - Body
@@ -42,39 +42,50 @@ struct HomeView: View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: true) {
                 VStack(spacing: Constants.sectionSpacing) {
-                    scanButton
-                    
-                    if let latestDevice = viewModel.latestDevice {
-                        latestDeviceSection(device: latestDevice)
-                    }
-                    
-                    if !viewModel.myDevices.isEmpty {
-                        allDevicesSection
-                    }
-                    
-                    if shouldShowEmptyState {
-                        emptyStateView
+                    if shouldShowInitialState {
+                        initialStateView
+                    } else {
+                        if let latestDevice = viewModel.latestDevice {
+                            latestDeviceSection(device: latestDevice)
+                        }
+                        
+                        if !viewModel.myDevices.isEmpty {
+                            allDevicesSection
+                        }
+                        
+                        if shouldShowEmptyState {
+                            emptyStateView
+                        }
                     }
                 }
                 .padding(.vertical)
             }
-            .navigationTitle("My App Beacons")
+            .navigationTitle("Beacons")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    HStack(spacing: 12) {
+                        // Refresh button
+                        Button(action: {
+                            viewModel.refresh()
+                        }) {
+                            Image(systemName: "arrow.clockwise")
+                        }
+                        
+                        // Start/Stop scan button
+                        Button(action: {
+                            viewModel.isScanning ? viewModel.stopScanning() : viewModel.startScanning()
+                        }) {
+                            Image(systemName: viewModel.isScanning ? "stop.circle.fill" : "play.circle.fill")
+                                .foregroundColor(viewModel.isScanning ? .red : .green)
+                        }
+                    }
+                }
+            }
         }
     }
     
     // MARK: - View Components
-    
-    /// Scan/Stop button component
-    private var scanButton: some View {
-        Button(scanButtonText) {
-            viewModel.isScanning ? viewModel.stopScanning() : viewModel.startScanning()
-        }
-        .padding()
-        .background(Color.green)
-        .foregroundColor(.white)
-        .cornerRadius(Constants.buttonCornerRadius)
-        .padding(.horizontal)
-    }
     
     /// Latest device section component
     /// 
@@ -105,6 +116,43 @@ struct HomeView: View {
         .background(Color.gray.opacity(Constants.allDevicesBackgroundOpacity))
         .cornerRadius(Constants.buttonCornerRadius)
         .padding(.horizontal)
+    }
+    
+    /// Initial state view when app first runs
+    private var initialStateView: some View {
+        VStack(spacing: 20) {
+            Image(systemName: "antenna.radiowaves.left.and.right")
+                .font(.system(size: 60))
+                .foregroundColor(.gray)
+            
+            Text("No devices found")
+                .font(.title2)
+                .fontWeight(.semibold)
+            
+            Text("Tap the button below to start scanning for BLE devices")
+                .font(.body)
+                .foregroundColor(.secondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
+            
+            Button(action: {
+                viewModel.startScanning()
+            }) {
+                HStack {
+                    Image(systemName: "play.circle.fill")
+                    Text("Start Scan")
+                }
+                .font(.headline)
+                .foregroundColor(.white)
+                .padding()
+                .frame(maxWidth: 200)
+                .background(Color.green)
+                .cornerRadius(Constants.buttonCornerRadius)
+            }
+            .padding(.top, 8)
+        }
+        .padding(.vertical, 60)
+        .frame(maxWidth: .infinity)
     }
     
     /// Empty state view when no devices are found

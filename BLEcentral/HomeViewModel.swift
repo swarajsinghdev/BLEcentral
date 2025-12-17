@@ -76,5 +76,18 @@ final class HomeViewModel {
     func stopScanning() {
         bluetoothService.stopScanning()
     }
+    
+    /// Refreshes the device list by stopping and restarting scan
+    func refresh() {
+        if isScanning {
+            stopScanning()
+        }
+        // Clear latest device
+        latestDevice = nil
+        // Restart scanning after a brief delay
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            self?.startScanning()
+        }
+    }
 }
 
