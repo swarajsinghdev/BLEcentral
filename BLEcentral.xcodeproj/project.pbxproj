@@ -64,11 +64,19 @@
 				0F4288302EF295CB003C0DA6 /* HomeViewModel.swift */,
 				0F4288232EF01D7C003C0DA6 /* HomeView.swift */,
 				0F42882C2EF13F8A003C0DA6 /* DeviceRow.swift */,
+				0F4288322EF29FEB003C0DA6 /* Bluetooth */,
+			);
+			path = BLEcentral;
+			sourceTree = "<group>";
+		};
+		0F4288322EF29FEB003C0DA6 /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
 				0F42882A2EF13F70003C0DA6 /* DeviceInfo.swift */,
 				0F42882E2EF29498003C0DA6 /* BluetoothServiceProtocol.swift */,
 				0F4288282EF01F98003C0DA6 /* BluetoothService.swift */,
 			);
-			path = BLEcentral;
+			path = Bluetooth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
