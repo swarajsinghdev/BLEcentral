@@ -7,14 +7,15 @@
 
 import Foundation
 import CoreBluetooth
-import Combine
+import Observation
 
 /// Manages Bluetooth Low Energy device scanning and discovery
 /// 
 /// This class handles scanning for BLE peripherals, filtering discovered devices,
 /// and maintaining a list of discovered devices. It uses CoreBluetooth's CBCentralManager
 /// to scan for peripherals matching specific criteria.
-class BLEScanner: NSObject, ObservableObject, CBCentralManagerDelegate {
+@Observable
+class BLEScanner: NSObject, CBCentralManagerDelegate {
     
     // MARK: - Constants
     
@@ -39,13 +40,13 @@ class BLEScanner: NSObject, ObservableObject, CBCentralManagerDelegate {
     /// Core Bluetooth central manager for scanning
     private var central: CBCentralManager!
     
-    // MARK: - Published State
+    // MARK: - Observable State
     
     /// List of discovered BLE devices
-    @Published var myDevices: [DeviceInfo] = []
+    var myDevices: [DeviceInfo] = []
     
     /// Current scanning state
-    @Published var isScanning = false
+    var isScanning = false
     
     // MARK: - Private Properties
     

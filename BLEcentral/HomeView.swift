@@ -9,7 +9,7 @@ import SwiftUI
 import CoreBluetooth
 
 struct HomeView: View {
-    @ObservedObject private var scanner = BLEScanner.shared
+    private let scanner = BLEScanner.shared
 
     var body: some View {
         NavigationStack {
