@@ -8,11 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var viewModel: HomeViewModel
-    
-    init(bluetoothService: BluetoothService = BluetoothService.shared) {
-        _viewModel = State(initialValue: HomeViewModel(bluetoothService: bluetoothService))
-    }
+    @State private var viewModel = HomeViewModel()
 
     var body: some View {
         NavigationStack {

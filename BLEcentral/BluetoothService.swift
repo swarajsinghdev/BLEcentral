@@ -31,10 +31,6 @@ final class BluetoothService: NSObject, BluetoothServiceProtocol, CBCentralManag
         static let statusUpdateInterval: TimeInterval = 60.0
     }
     
-    // MARK: - Singleton
-    
-    static let shared = BluetoothService()
-    
     // MARK: - Dependencies
     
     /// Core Bluetooth central manager for scanning

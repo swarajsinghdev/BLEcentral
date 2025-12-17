@@ -15,7 +15,7 @@ final class HomeViewModel {
     // MARK: - Dependencies
     
     /// Bluetooth service for device scanning
-    let bluetoothService: BluetoothService
+    private let bluetoothService: BluetoothServiceProtocol
     
     // MARK: - Computed Properties
     
@@ -31,7 +31,7 @@ final class HomeViewModel {
     
     // MARK: - Initialization
     
-    init(bluetoothService: BluetoothService = BluetoothService.shared) {
+    init(bluetoothService: BluetoothServiceProtocol = BluetoothService()) {
         self.bluetoothService = bluetoothService
     }
     
