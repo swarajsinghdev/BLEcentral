@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import BLEKit
 
 /// Main view for displaying and managing BLE device scanning
 struct HomeView: View {
@@ -91,7 +92,7 @@ struct HomeView: View {
     /// 
     /// - Parameter device: The latest discovered device
     /// - Returns: A view displaying the latest device information
-    private func latestDeviceSection(device: DeviceInfo) -> some View {
+    private func latestDeviceSection(device: BLEDevice) -> some View {
         VStack(alignment: .leading, spacing: Constants.sectionPadding) {
             sectionHeader(title: "Latest Device")
             

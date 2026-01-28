@@ -1,25 +1,27 @@
 //
-//  DeviceInfo.swift
-//  BLEcentral
+//  BLEDevice.swift
+//  BLEKit
 //
-//  Created by Swarajmeet Singh on 15/12/25.
+//  Copyright (c) 2026 BLEKit. All rights reserved.
+//
+//  Model for a discovered BLE peripheral and its advertisement data.
 //
 
 import Foundation
 import CoreBluetooth
 
-struct DeviceInfo: Identifiable {
-    let id: UUID
-    let peripheral: CBPeripheral
-    let name: String?
-    let localName: String?
-    let manufacturerData: Data?
-    let serviceUUIDs: [CBUUID]?
-    let rssi: Int
-    let identifier: UUID
-    let advertisementData: [String: Any]
+public struct BLEDevice: Identifiable {
+    public let id: UUID
+    public let peripheral: CBPeripheral
+    public let name: String?
+    public let localName: String?
+    public let manufacturerData: Data?
+    public let serviceUUIDs: [CBUUID]?
+    public let rssi: Int
+    public let identifier: UUID
+    public let advertisementData: [String: Any]
     
-    init(peripheral: CBPeripheral, advertisementData: [String: Any], rssi: NSNumber) {
+    public init(peripheral: CBPeripheral, advertisementData: [String: Any], rssi: NSNumber) {
         self.peripheral = peripheral
         self.id = peripheral.identifier
         self.identifier = peripheral.identifier
@@ -31,18 +33,17 @@ struct DeviceInfo: Identifiable {
         self.advertisementData = advertisementData
     }
     
-    var manufacturerDataString: String {
+    public var manufacturerDataString: String {
         guard let data = manufacturerData else {
             return "data is nil"
         }
         return data.map { String(format: "%02X", $0) }.joined(separator: " ")
     }
     
-    var serviceUUIDsString: String {
+    public var serviceUUIDsString: String {
         guard let uuids = serviceUUIDs, !uuids.isEmpty else {
             return "data is nil"
         }
         return uuids.map { $0.uuidString }.joined(separator: ", ")
     }
 }
-

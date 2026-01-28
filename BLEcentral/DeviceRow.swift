@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
-import CoreBluetooth
+import BLEKit
 
 struct DeviceRow: View {
-    let device: DeviceInfo
+    let device: BLEDevice
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {

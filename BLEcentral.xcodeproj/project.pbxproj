@@ -10,11 +10,10 @@
 		0F4288252EF01D7C003C0DA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F4288212EF01D7C003C0DA6 /* Assets.xcassets */; };
 		0F4288262EF01D7C003C0DA6 /* BLEcentralApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4288222EF01D7C003C0DA6 /* BLEcentralApp.swift */; };
 		0F4288272EF01D7C003C0DA6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4288232EF01D7C003C0DA6 /* HomeView.swift */; };
-		0F4288292EF01F98003C0DA6 /* BluetoothService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4288282EF01F98003C0DA6 /* BluetoothService.swift */; };
-		0F42882B2EF13F70003C0DA6 /* DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F42882A2EF13F70003C0DA6 /* DeviceInfo.swift */; };
 		0F42882D2EF13F8A003C0DA6 /* DeviceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F42882C2EF13F8A003C0DA6 /* DeviceRow.swift */; };
-		0F42882F2EF29498003C0DA6 /* BluetoothServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F42882E2EF29498003C0DA6 /* BluetoothServiceProtocol.swift */; };
 		0F4288312EF295CB003C0DA6 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4288302EF295CB003C0DA6 /* HomeViewModel.swift */; };
+		0F4300032F3A000100000001 /* BLEKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0F4300022F3A000100000001 /* BLEKit */; };
+		0FCFF01B2F225499005E80C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCFF01A2F225499005E80C3 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,11 +21,9 @@
 		0F4288212EF01D7C003C0DA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F4288222EF01D7C003C0DA6 /* BLEcentralApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEcentralApp.swift; sourceTree = "<group>"; };
 		0F4288232EF01D7C003C0DA6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		0F4288282EF01F98003C0DA6 /* BluetoothService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothService.swift; sourceTree = "<group>"; };
-		0F42882A2EF13F70003C0DA6 /* DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfo.swift; sourceTree = "<group>"; };
 		0F42882C2EF13F8A003C0DA6 /* DeviceRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRow.swift; sourceTree = "<group>"; };
-		0F42882E2EF29498003C0DA6 /* BluetoothServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothServiceProtocol.swift; sourceTree = "<group>"; };
 		0F4288302EF295CB003C0DA6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		0FCFF01A2F225499005E80C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F4300032F3A000100000001 /* BLEKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +59,7 @@
 			children = (
 				0F4288212EF01D7C003C0DA6 /* Assets.xcassets */,
 				0F4288222EF01D7C003C0DA6 /* BLEcentralApp.swift */,
+				0FCFF01A2F225499005E80C3 /* AppDelegate.swift */,
 				0F4288302EF295CB003C0DA6 /* HomeViewModel.swift */,
 				0F4288232EF01D7C003C0DA6 /* HomeView.swift */,
 				0F42882C2EF13F8A003C0DA6 /* DeviceRow.swift */,
@@ -72,9 +71,6 @@
 		0F4288322EF29FEB003C0DA6 /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
-				0F42882A2EF13F70003C0DA6 /* DeviceInfo.swift */,
-				0F42882E2EF29498003C0DA6 /* BluetoothServiceProtocol.swift */,
-				0F4288282EF01F98003C0DA6 /* BluetoothService.swift */,
 			);
 			path = Bluetooth;
 			sourceTree = "<group>";
@@ -96,6 +92,7 @@
 			);
 			name = BLEcentral;
 			packageProductDependencies = (
+				0F4300022F3A000100000001 /* BLEKit */,
 			);
 			productName = BLEcentral;
 			productReference = 0F4288132EF01D73003C0DA6 /* BLEcentral.app */;
@@ -125,6 +122,9 @@
 			);
 			mainGroup = 0F42880A2EF01D73003C0DA6;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				0F4300012F3A000100000001 /* XCLocalSwiftPackageReference "BLEKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0F4288142EF01D73003C0DA6 /* Products */;
 			projectDirPath = "";
@@ -151,12 +151,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F42882F2EF29498003C0DA6 /* BluetoothServiceProtocol.swift in Sources */,
-				0F4288292EF01F98003C0DA6 /* BluetoothService.swift in Sources */,
+				0FCFF01B2F225499005E80C3 /* AppDelegate.swift in Sources */,
 				0F4288312EF295CB003C0DA6 /* HomeViewModel.swift in Sources */,
 				0F4288262EF01D7C003C0DA6 /* BLEcentralApp.swift in Sources */,
 				0F4288272EF01D7C003C0DA6 /* HomeView.swift in Sources */,
-				0F42882B2EF13F70003C0DA6 /* DeviceInfo.swift in Sources */,
 				0F42882D2EF13F8A003C0DA6 /* DeviceRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,6 +373,21 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		0F4300012F3A000100000001 /* XCLocalSwiftPackageReference "BLEKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = BLEKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0F4300022F3A000100000001 /* BLEKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0F4300012F3A000100000001 /* XCLocalSwiftPackageReference "BLEKit" */;
+			productName = BLEKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0F42880B2EF01D73003C0DA6 /* Project object */;
 }
